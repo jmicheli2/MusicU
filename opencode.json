@@ -1,0 +1,24 @@
+
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "ollama/hf.co/bartowski/Qwen3.8-27B-GGUF:Q6_K",
+  "permission": {
+    "websearch": "allow",
+    "webfetch": "allow"
+  },
+  "provider": {
+    "ollama": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Ollama (local)",
+      "options": {
+        "baseURL": "http://localhost:11434/v1"
+      },
+      "models": {
+        "hf.co/bartowski/Qwen3.8-27B-GGUF:Q6_K": {
+          "name": "Qwen 3.8 27B Q6"
+        }
+      }
+    }
+  }
+}
+
