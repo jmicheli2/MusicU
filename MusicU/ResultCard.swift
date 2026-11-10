@@ -23,7 +23,7 @@ struct ResultCard<Content: View>: View {
     }
 
     var body: some View {
-        VStack(spacing: 14) {
+        VStack(spacing: 10) {
             HStack(spacing: 6) {
                 Image(systemName: systemImage)
                     .font(.subheadline)

@@ -96,7 +96,7 @@ final class MusicAnalyzer {
         guard errorMessage == nil else { return }
 
         do {
-            try configureAudioSession()
+            try await configureAudioSession()
         } catch {
             errorMessage = "Could not start the audio session: " + error.localizedDescription
             return
@@ -247,10 +247,13 @@ final class MusicAnalyzer {
         }
     }
 
-    private func configureAudioSession() throws {
+    /// Uses the asynchronous audio-session API: `start()` runs on the main
+    /// actor, and the synchronous `setActive` blocks the main thread long
+    /// enough for the system to warn about UI unresponsiveness.
+    private func configureAudioSession() async throws {
         let audioSession = AVAudioSession.sharedInstance()
         try audioSession.setCategory(.record)
-        try audioSession.setActive(true)
+        _ = try await audioSession.activate()
     }
 
     // MARK: - Key formatting

@@ -8,9 +8,11 @@
 import SwiftUI
 
 /// The app's single screen: a dark, glassy layout with a live loudness meter,
-/// a start/stop transport, and two readout cards for the detected key and tempo.
+/// a start/stop transport, two readout cards for the detected key and tempo,
+/// and a metronome card to keep time while you are not analysing.
 struct ContentView: View {
     @State private var analyzer = MusicAnalyzer()
+    @State private var metronome = Metronome()
 
     var body: some View {
         ZStack {
@@ -30,6 +32,11 @@ struct ContentView: View {
                     TempoView(bpm: analyzer.detectedTempoBPM, isBusy: analyzer.isBusy)
                 }
                 .padding(.horizontal, 20)
+
+                Spacer(minLength: 16)
+
+                MetronomeView(metronome: metronome)
+                    .padding(.horizontal, 20)
 
                 Spacer(minLength: 24)
 
